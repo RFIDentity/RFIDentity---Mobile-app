@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import * as EPManager from './EndPointsManager';
 import {Home, getRoomFunctions} from './Rooms';
+//import DataWedgeIntents from 'react-native-datawedge-intents';
 
 
 const Drawer = createDrawerNavigator();

@@ -45,3 +45,27 @@ export const getArea = async (location) => {
   }
   return result;
 };
+
+export const updateArea = async (updatedAreaData) => {
+  let result = null;
+  try {
+    const response = await fetch('http://192.168.0.192:4000/api/updateArea', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ assets: updatedAreaData }),
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.text();
+      console.error('Network response was not ok:', response.status, errorResponse);
+      throw new Error('Network response was not ok');
+    }
+
+    result = await response.json();
+  } catch (err) {
+    console.error('Fetch error:', err);
+  }
+  return result;
+};
