@@ -54,7 +54,7 @@ export const updateArea = async (updatedAreaData) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ assets: updatedAreaData }),
+      body: JSON.stringify({ assets: updatedAreaData }),                
     });
 
     if (!response.ok) {
@@ -68,4 +68,4 @@ export const updateArea = async (updatedAreaData) => {
     console.error('Fetch error:', err);
   }
   return result;
-};
+};                                                                                                

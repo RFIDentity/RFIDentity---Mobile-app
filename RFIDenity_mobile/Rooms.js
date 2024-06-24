@@ -10,6 +10,8 @@ import {
   DeviceEventEmitter
 } from 'react-native';
 import { getArea, updateArea } from './EndPointsManager';
+import styles from "./styles.js"
+import * as Updates from 'expo-updates';
 
 export const getRoomFunctions = (data) => {
     return data.map((item) => {
@@ -21,12 +23,41 @@ export const getRoomFunctions = (data) => {
   };
 
   export function Home({ navigation }) {
+    const navigateToRapidScan = () => {
+      navigation.navigate('RapidScan');
+    };
+  
+    const navigateToRoomList = () => {
+      navigation.toggleDrawer();
+    };
 
+    const handleReload = async () => {
+      // try {
+      //   await Updates.reloadAsync(); // Wywołanie funkcji reloadAsync z expo-updates
+      // } catch (error) {
+      //   console.error('Error while reloading:', error);
+      // }
+    }
   
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>What's the front?</Text>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={navigateToRoomList} style={styles.tile}>
+          <View style={styles.tileContent}>
+            <Text style={styles.tileText}>Room List</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateToRapidScan} style={styles.tile}>
+          <View style={styles.tileContent}>
+            <Text style={styles.tileText}>Rapid Scan</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleReload} style={styles.tile}>
+          <View style={styles.tileContent}>
+            <Text style={styles.tileText}>Refresh</Text>
+          </View>
+        </TouchableOpacity>
       </View>
+      
     );
   }
 
@@ -73,7 +104,13 @@ export const getRoomFunctions = (data) => {
         updatedAreaData[selectedItemIndex].descriptionDetails = newDescriptionDetails;
         setAreaData(updatedAreaData);
         setModalVisible(false);
+        updateCheckedItemsCount(areaData);
       }
+    };
+
+    const updateCheckedItemsCount = (data) => {
+      const foundItems = data.filter((item) => item.status === 'FOUND');
+      setNumberOfCheckedItems(foundItems.length);
     };
   
     async function handleSend() {

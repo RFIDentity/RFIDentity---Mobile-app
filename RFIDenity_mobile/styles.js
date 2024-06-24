@@ -37,6 +37,31 @@ const styles = StyleSheet.create({
       shadowRadius: 4,
       elevation: 5,
     },
+    container: {
+      flex: 1,
+      flexDirection: 'column', // Ułożenie w kolumnie
+      justifyContent: 'center', // Wycentrowane w pionie
+      alignItems: 'center', // Wycentrowane w poziomie
+      paddingHorizontal: 20,
+    },
+    tile: {
+      width: 150,
+      height: 150,
+      backgroundColor: 'lightblue',
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 20
+    },
+    tileContent: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    tileText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+    },
   });
 
   export default styles;
